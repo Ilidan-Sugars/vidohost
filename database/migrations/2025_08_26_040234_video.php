@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('description')->nullable();
             $table->string('thumbnail')->nullable();
-            $table->string('arr');
+            $table->json('url');
             $table->integer('status')->default(0);
             $table->dateTime('created', precision: 0);
         });
