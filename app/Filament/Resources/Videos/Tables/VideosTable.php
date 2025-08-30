@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\Customers\Tables;
+namespace App\Filament\Resources\Videos\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -8,7 +8,7 @@ use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Table;
 
-class CustomersTable
+class VideosTable
 {
     public static function configure(Table $table): Table
     {

@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Filament\Resources\Customers\Pages;
+namespace App\Filament\Resources\Videos\Pages;
 
-use App\Filament\Resources\Customers\CustomerResource;
+use App\Filament\Resources\Videos\VideoResource;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\ViewAction;
 use Filament\Resources\Pages\EditRecord;
 
-class EditCustomer extends EditRecord
+class EditVideo extends EditRecord
 {
-    protected static string $resource = CustomerResource::class;
+    protected static string $resource = VideoResource::class;
 
     protected function getHeaderActions(): array
     {

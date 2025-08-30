@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Filament\Resources\Customers\Schemas;
+namespace App\Filament\Resources\Videos\Schemas;
 
 use Filament\Schemas\Schema;
 
-class CustomerForm
+class VideoInfolist
 {
     public static function configure(Schema $schema): Schema
     {

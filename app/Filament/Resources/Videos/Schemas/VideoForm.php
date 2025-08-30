@@ -1,0 +1,52 @@
+<?php
+
+namespace App\Filament\Resources\Videos\Schemas;
+
+use Filament\Forms\Components\FileUpload;
+use Filament\Schemas\Schema;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\Select;
+
+class VideoForm
+{
+    public static function configure(Schema $schema): Schema
+    {
+        return $schema
+            ->components([
+                TextInput::make('video_name')
+                    ->label('Video name')
+                    ->required(),
+                RichEditor::make('video_description')
+                    ->label('Video description'),
+
+                FileUpload::make('video_thumbnail')
+                    ->label('Video thumbnail')
+                    ->image(),
+
+                Repeater::make('url_hosts')
+                    ->schema([
+                        TextInput::make('url')->required()
+                            ->label('Url Video')
+                            ->placeholder('link'),
+                        Select::make('url_source')
+                            ->options([
+                                'youtube' => 'YouTube',
+                                'vk' => 'VK',
+                                'rutube' => 'RuTube',
+                            ])
+                            ->required(),
+                    ])
+                    ->columns(2)
+                    ->label('Video Sources')
+                    ->addActionLabel('Add source'),
+                Select::make('status')
+                    ->options([
+                        'hide' => 'Hide',
+                        'shared_access' => 'Shared access'
+                    ])
+                    ->default('hide')
+            ]);
+    }
+}

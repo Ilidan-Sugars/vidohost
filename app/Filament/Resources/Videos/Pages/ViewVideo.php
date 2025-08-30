@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Filament\Resources\Customers\Pages;
+namespace App\Filament\Resources\Videos\Pages;
 
-use App\Filament\Resources\Customers\CustomerResource;
+use App\Filament\Resources\Videos\VideoResource;
 use Filament\Actions\EditAction;
 use Filament\Resources\Pages\ViewRecord;
 
-class ViewCustomer extends ViewRecord
+class ViewVideo extends ViewRecord
 {
-    protected static string $resource = CustomerResource::class;
+    protected static string $resource = VideoResource::class;
 
     protected function getHeaderActions(): array
     {
