@@ -14,6 +14,7 @@ class VideoForm
     public static function configure(Schema $schema): Schema
     {
         return $schema
+            ->columns(1)
             ->components([
                 TextInput::make('video_name')
                     ->label('Video name')
@@ -27,10 +28,10 @@ class VideoForm
 
                 Repeater::make('url_hosts')
                     ->schema([
-                        TextInput::make('url')->required()
+                        TextInput::make('links')->required()
                             ->label('Url Video')
                             ->placeholder('link'),
-                        Select::make('url_source')
+                        Select::make('source')
                             ->options([
                                 'youtube' => 'YouTube',
                                 'vk' => 'VK',
@@ -49,4 +50,5 @@ class VideoForm
                     ->default('hide')
             ]);
     }
+
 }

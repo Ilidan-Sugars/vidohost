@@ -12,5 +12,8 @@ class Video extends Model
         return 'User registered';
     }
 
-    protected $fillable = ['video_name','video_description0','video_thumbnail','url_hosts','status'];
+    protected $fillable = ['video_name','video_description','video_thumbnail','url_hosts','status'];
+    protected $casts = [
+        'url_hosts' => 'array',
+    ];
 }

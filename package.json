@@ -4,7 +4,10 @@
     "type": "module",
     "scripts": {
         "build": "vite build",
-        "dev": "vite"
+        "dev": "vite",
+        "scss": "sass resources/scss/app.scss resources/css/app.css",
+        "watch": "sass --watch resources/scss/app.scss:public/css/app.css"
+
     },
     "devDependencies": {
         "@tailwindcss/vite": "^4.0.0",

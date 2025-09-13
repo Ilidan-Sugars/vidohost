@@ -15,6 +15,8 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\IconColumn;
 
 class VideoResource extends Resource
 {
@@ -36,7 +38,12 @@ class VideoResource extends Resource
 
     public static function table(Table $table): Table
     {
-        return VideosTable::configure($table);
+        return $table
+            ->columns([
+                TextColumn::make('video_name'),
+                TextColumn::make('video_thumbnail'),
+                IconColumn::make('status')
+            ]);
     }
 
     public static function getRelations(): array
