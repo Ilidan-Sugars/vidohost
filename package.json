@@ -6,7 +6,7 @@
         "build": "vite build",
         "dev": "vite",
         "scss": "sass resources/scss/app.scss resources/css/app.css",
-        "watch": "sass --watch resources/scss/app.scss:public/css/app.css"
+        "watch": "sass --watch resources/scss/app.scss:resources/css/app.css"
 
     },
     "devDependencies": {
