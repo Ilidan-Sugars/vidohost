@@ -1,0 +1,9 @@
+a, .btn-primary {
+    color: $primary-color;
+    transition: color $transition, background $transition;
+    text-decoration: none;
+    &:hover, &:focus {
+      color: lighten($primary-color, 10%);
+      background: darken($primary-color, 10%);
+    }
+  }

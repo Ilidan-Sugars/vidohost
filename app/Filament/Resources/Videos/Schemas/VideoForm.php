@@ -24,7 +24,15 @@ class VideoForm
 
                 FileUpload::make('video_thumbnail')
                     ->label('Video thumbnail')
-                    ->image(),
+                    ->image()
+                    ->visibility('public')
+                    ->imageEditor()
+                    ->imageEditorMode(3)
+                    ->imageEditorAspectRatios([
+                        '16:9'
+                    ])
+                    ->imageCropAspectRatio('16:9')
+                    ->maxFiles(1),
 
                 Repeater::make('url_hosts')
                     ->schema([

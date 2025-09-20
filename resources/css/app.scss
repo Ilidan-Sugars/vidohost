@@ -1,0 +1,11 @@
+@import "bootstrap/scss/bootstrap";
+
+@import 'core/core';
+@import 'core/controls';
+
+@import 'layouts/header';
+@import 'layouts/footer';
+
+
+@import 'pages/index';
+@import 'pages/video';

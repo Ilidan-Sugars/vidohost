@@ -17,9 +17,15 @@ use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Actions\Action;
+
+
+
 
 class VideoResource extends Resource
 {
+
     protected static ?string $model = Video::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedPlayCircle;
@@ -38,12 +44,19 @@ class VideoResource extends Resource
 
     public static function table(Table $table): Table
     {
+
         return $table
+            ->searchable()
             ->columns([
-                TextColumn::make('video_name'),
-                TextColumn::make('video_thumbnail'),
+                TextColumn::make('video_name')->searchable(),
+                ImageColumn::make('video_thumbnail'),
                 IconColumn::make('status')
+            ])
+            ->recordActions([
+                \Filament\Actions\EditAction::make(),
+                \Filament\Actions\DeleteAction::make(),
             ]);
+
     }
 
     public static function getRelations(): array
