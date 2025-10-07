@@ -25,6 +25,7 @@ class VideoForm
                 FileUpload::make('video_thumbnail')
                     ->label('Video thumbnail')
                     ->image()
+                    ->disk('public')
                     ->visibility('public')
                     ->imageEditor()
                     ->imageEditorMode(3)
