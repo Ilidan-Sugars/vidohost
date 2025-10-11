@@ -17,13 +17,13 @@ class VideoForm
             ->columns(1)
             ->components([
                 TextInput::make('video_name')
-                    ->label('Video name')
+                    ->label('Название видео')
                     ->required(),
                 RichEditor::make('video_description')
-                    ->label('Video description'),
+                    ->label('Описание видео'),
 
                 FileUpload::make('video_thumbnail')
-                    ->label('Video thumbnail')
+                    ->label('Превью видео')
                     ->image()
                     ->disk('public')
                     ->visibility('public')
@@ -35,12 +35,19 @@ class VideoForm
                     ->imageCropAspectRatio('16:9')
                     ->maxFiles(1),
 
+                Select::make('category')
+                    ->label('Категории')
+                    ->multiple()
+                    ->relationship('categories', 'name')
+                    ->searchable()
+                    ->preload(),
                 Repeater::make('url_hosts')
                     ->schema([
                         TextInput::make('links')->required()
-                            ->label('Url Video')
+                            ->label('Ссылка на видео')
                             ->placeholder('link'),
                         Select::make('source')
+                        ->label('Источники видео')
                             ->options([
                                 'youtube' => 'YouTube',
                                 'vk' => 'VK',
@@ -49,14 +56,14 @@ class VideoForm
                             ->required(),
                     ])
                     ->columns(2)
-                    ->label('Video Sources')
-                    ->addActionLabel('Add source'),
+                    ->addActionLabel('Добавить источник'),
                 Select::make('status')
                     ->options([
-                        'hide' => 'Hide',
-                        'shared_access' => 'Shared access'
+                        'hide' => 'Скрыть',
+                        'shared_access' => 'Открыть доступ'
                     ])
                     ->default('hide')
+                    ->label('Статус')
             ]);
     }
 

@@ -67,11 +67,42 @@
     }
 
     .video-title {
-        font-size: 1.1rem;
+        font-size: .9rem;
         font-weight: 600;
         color: $primary-color;
         margin-bottom: 0.25rem;
         transition: color $transition;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        line-height: 1.4;
+        max-height: calc(1.4em * 2);
+    }
+
+    .video-categories {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        margin-top: 0.5rem;
+    }
+
+    .category-tag {
+        background: rgba($Indigo, 0.1);
+        color: $BlueViolet;
+        padding: 0.25rem 0.5rem;
+        border-radius: 6px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        border: 1px solid rgba($BlueViolet, 0.2);
+        transition: all $transition;
+        white-space: nowrap;
+
+        &:hover {
+            background: rgba($BlueViolet, 0.15);
+            border-color: rgba($BlueViolet, 0.3);
+        }
     }
 }
 

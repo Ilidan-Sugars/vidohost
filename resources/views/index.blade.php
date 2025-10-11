@@ -6,17 +6,25 @@
     <div class="container">
         <ul class="row p-0">
             @forelse ($videos as $video)
-                <ol class="col-md-4 my-2">
+                <ol class="col-12 col-md-6 col-lg-4 my-2">
                     <a href="/video/{{ $video->id}}" class="video-item">
                         <div class="video-thumb">
                             @if($video->video_thumbnail)
-                                <img src="{{asset('storage/' . $video->video_thumbnail) }}" alt="{{ $video->video_name }} thumbnail">
+                                <img src="{{asset('storage/' . $video->video_thumbnail) }}"
+                                    alt="{{ $video->video_name }} thumbnail">
                             @else
                                 <div class="no-thumb"> </div>
                             @endif
                         </div>
                         <div class="video-info">
                             <span class="video-title">{{ $video->video_name }}</span>
+                            @if($video->categories->count() != 0)
+                                <div class="video-categories">
+                                    @foreach($video->categories as $category)
+                                    <span class="category-tag">{{ $category->name }}</span></span>
+                                    @endforeach
+                                </div>
+                            @endif
                         </div>
                     </a>
                 </ol>

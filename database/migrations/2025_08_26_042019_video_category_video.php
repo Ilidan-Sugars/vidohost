@@ -11,8 +11,8 @@ return new class extends Migration {
     public function up(): void
     { // По итогу, foreignId это сделать эквивалент, а constrained это ссылка на таблицу
         Schema::create('video_category_videos', function (Blueprint $table) {
-            $table->foreignId('videos_id')->constrained('videos');
-            $table->foreignId('videos_category_id')->constrained('videos_category');
+            $table->foreignId('video_id')->constrained('videos');
+            $table->foreignId('video_category_id')->constrained('video_category');
         });
     }
 
@@ -21,6 +21,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('video_category_videos');
     }
 };

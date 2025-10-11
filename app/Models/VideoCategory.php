@@ -13,8 +13,8 @@ class VideoCategory extends Model
         'description',
     ];
 
-    public function VideoCategory()
+    public function videos()
     {
-        return $this->belongsToMany(Video::class, 'video_category_video', 'category_id', 'video_id');
+        return $this->belongsToMany(Video::class, 'video_category_videos');
     }
 }

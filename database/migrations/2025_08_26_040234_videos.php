@@ -14,11 +14,15 @@ return new class extends Migration
         Schema::create('videos',function (Blueprint $table) {
             $table->id();
             $table->string('video_name');
-            $table->string('video_description')->nullable();
+            $table->text('video_description')->nullable();
             $table->string('video_thumbnail')->nullable();
             $table->json('url_hosts');
             $table->string('status')->default('hide');
-            $table->timestamps(0);
+            $table->timestamps();
+
+            // Индексы для оптимизации
+            $table->index('status');
+            $table->index('video_name');
         });
     }
 
@@ -27,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('videos');
     }
 };

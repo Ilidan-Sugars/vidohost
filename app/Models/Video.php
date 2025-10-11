@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Video extends Model
 {
@@ -16,4 +17,8 @@ class Video extends Model
     protected $casts = [
         'url_hosts' => 'array',
     ];
+
+    public function categories() {
+        return $this->belongsToMany(VideoCategory::class, 'video_category_videos');
+    }
 }

@@ -8,7 +8,7 @@ use App\Models\Video;
 class AllVideosController extends Controller
 {
     public function index(){
-        $videos = Video::all();
+        $videos = Video::with('categories')->where('status','!=', 'hide')->get();
         return view('index', compact('videos'));
     }
 }
