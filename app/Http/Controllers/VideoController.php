@@ -4,17 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Video;
+use App\Models\VideoCategory;
 
 class VideoController extends Controller
 {
     public function show($id)
     {
         $videoModel = Video::find($id);
+        $categories = VideoCategory::all();
         if (!$videoModel) {
             abort(404);
         }
         $video = $videoModel->toArray();
-        foreach ($video['url_hosts'] as &$host) {
+        foreach ($video['url_hosts'] as $host) {
             if (isset($host['source']) && strtolower($host['source']) == 'youtube') {
                 $host['links'] = $this->youtubeEmbed($host['links']);
             }
@@ -25,7 +27,7 @@ class VideoController extends Controller
                 $host['links'] = $this->rutubeEmbed($host['links']);
             }
         }
-        return view('video', compact('video'));
+        return view('video', compact('video', 'categories'));
     }
 
     private function youtubeEmbed($url)

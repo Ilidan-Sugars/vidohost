@@ -4,6 +4,7 @@
 
 @section('content')
     <div class="container">
+
         <ul class="row p-0">
             @forelse ($videos as $video)
                 <ol class="col-12 col-md-6 col-lg-4 my-2">
@@ -21,7 +22,7 @@
                             @if($video->categories->count() != 0)
                                 <div class="video-categories">
                                     @foreach($video->categories as $category)
-                                    <span class="category-tag">{{ $category->name }}</span></span>
+                                        <span class="category-tag">{{ $category->name }}</span>
                                     @endforeach
                                 </div>
                             @endif
