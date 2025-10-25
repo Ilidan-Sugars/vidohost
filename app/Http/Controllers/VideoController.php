@@ -10,23 +10,39 @@ class VideoController extends Controller
 {
     public function show($id)
     {
-        $videoModel = Video::find($id);
+        $video = Video::with('categories')->findOrFail($id);
         $categories = VideoCategory::all();
-        if (!$videoModel) {
-            abort(404);
+
+        // Обработка URL хостов
+        $processedHosts = [];
+        foreach ($video->url_hosts as $host) {
+            if (!isset($host['source']) || !isset($host['links'])) {
+                continue;
+            }
+
+            $source = strtolower($host['source']);
+            $links = $host['links'];
+
+            switch ($source) {
+                case 'youtube':
+                    $links = $this->youtubeEmbed($links);
+                    break;
+                case 'vk':
+                    $links = $this->vkEmbed($links);
+                    break;
+                case 'rutube':
+                    $links = $this->rutubeEmbed($links);
+                    break;
+            }
+
+            $processedHosts[] = [
+                'source' => $host['source'],
+                'links' => $links
+            ];
         }
-        $video = $videoModel->toArray();
-        foreach ($video['url_hosts'] as $host) {
-            if (isset($host['source']) && strtolower($host['source']) == 'youtube') {
-                $host['links'] = $this->youtubeEmbed($host['links']);
-            }
-            if (isset($host['source']) && strtolower($host['source']) == 'vk') {
-                $host['links'] = $this->vkEmbed($host['links']);
-            }
-            if (isset($host['source']) && strtolower($host['source']) == 'rutube') {
-                $host['links'] = $this->rutubeEmbed($host['links']);
-            }
-        }
+
+        $video->url_hosts = $processedHosts;
+
         return view('video', compact('video', 'categories'));
     }
 

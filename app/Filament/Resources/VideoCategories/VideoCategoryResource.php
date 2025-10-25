@@ -35,32 +35,24 @@ class VideoCategoryResource extends Resource
                     ->required(),
                 TextInput::make('description')
                     ->label('Описание'),
-                TextColumn::make('created_at')
-                    ->label('Дата создания')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
-                    ->label('Дата обновления')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
             ]);
-
     }
 
     public static function infolist(Schema $schema): Schema
     {
         return $schema
             ->components([
-                TextEntry::make('VideoCategory'),
+                TextEntry::make('name')
+                    ->label('Название'),
+                TextEntry::make('description')
+                    ->label('Описание'),
             ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table
-            ->recordTitleAttribute('VideoCategory')
+            ->recordTitleAttribute('name')
             ->columns([
                 TextColumn::make('name')
                     ->label('Название')

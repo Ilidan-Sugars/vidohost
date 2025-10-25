@@ -15,6 +15,10 @@ class AllVideosController extends Controller
     }
     public function search(Request $request)
     {
+        $request->validate([
+            'search' => 'required|string|min:2|max:255'
+        ]);
+
         $searchTerm = $request->input('search');
 
         $videos = Video::with('categories')

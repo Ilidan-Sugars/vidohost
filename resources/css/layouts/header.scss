@@ -9,4 +9,26 @@
   transition: color 0.2s;
 }
 
+.categories-dropdown {
+  max-height: 200px; /* Примерно 6 элементов по ~33px каждый */
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #343a40;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #6c757d;
+    border-radius: 3px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #adb5bd;
+  }
+}
+
 
